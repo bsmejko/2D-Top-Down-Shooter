@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://hg8k6frhpt08"]
+
+[ext_resource type="Script" path="res://scenes/FasterFireRate.cs" id="1_bvmq2"]
+[ext_resource type="Texture2D" uid="uid://cmmkdwx2dk8u" path="res://assets/Extras/Item_Powerup_13.png" id="2_hwwdg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yasti"]
+
+[node name="FasterFireRate" type="Area2D"]
+scale = Vector2(6.135, 6.135)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_bvmq2")
+PowerUpIcon = ExtResource("2_hwwdg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hwwdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.185, 3.185)
+shape = SubResource("RectangleShape2D_yasti")
+
+[connection signal="area_entered" from="." to="." method="OnBodyEntered"]

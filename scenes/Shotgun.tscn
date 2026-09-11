@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlmo8mlvc43we"]
+
+[ext_resource type="Script" path="res://scripts/weapons/Shotgun.cs" id="1_io8q8"]
+[ext_resource type="PackedScene" uid="uid://dx4m61keks2vp" path="res://scenes/Bullet.tscn" id="2_6hg47"]
+[ext_resource type="Texture2D" uid="uid://bg7eaykymhf3v" path="res://assets/Weapons/shotgun.png" id="2_jwhf0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpukd"]
+size = Vector2(20.7865, 8.49678)
+
+[node name="Shotgun" type="Area2D" node_paths=PackedStringArray("WeaponSprite")]
+z_index = 10
+scale = Vector2(0.8, 0.8)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_io8q8")
+BulletScene = ExtResource("2_6hg47")
+WeaponName = "Shotgun"
+WeaponTexture = ExtResource("2_jwhf0")
+SpreadShot = true
+WeaponSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jwhf0")
+offset = Vector2(-62.11, -472.305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(65.29, 65.29)
+shape = SubResource("RectangleShape2D_xpukd")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

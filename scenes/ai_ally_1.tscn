@@ -1,0 +1,220 @@
+[gd_scene load_steps=35 format=3 uid="uid://duj6dwqn1qwuv"]
+
+[ext_resource type="Script" path="res://AiAlly1.cs" id="1_8qmw1"]
+[ext_resource type="PackedScene" uid="uid://bxc3mpbmslad3" path="res://scenes/Projectile(Friendly).tscn" id="2_c10k6"]
+[ext_resource type="PackedScene" uid="uid://deah0eqfqmqwm" path="res://scenes/ally_pistol.tscn" id="3_b3r03"]
+[ext_resource type="Texture2D" uid="uid://bekvqpqtkg1kx" path="res://assets/Full body animated characters/Ally/idle_0.png" id="4_5bmk4"]
+[ext_resource type="Texture2D" uid="uid://oc2i1rw6ltss" path="res://assets/Full body animated characters/Ally/idle_1.png" id="5_xun6d"]
+[ext_resource type="Texture2D" uid="uid://cwta8d2a7ilca" path="res://assets/Full body animated characters/Ally/idle_2.png" id="6_7jdp4"]
+[ext_resource type="Texture2D" uid="uid://bodyhvepfi6vq" path="res://assets/Full body animated characters/Ally/idle_3.png" id="7_6bii7"]
+[ext_resource type="Texture2D" uid="uid://b8b60yk8dtyrd" path="res://assets/Full body animated characters/Ally/idle_4.png" id="8_sntp3"]
+[ext_resource type="Texture2D" uid="uid://i00bnog6qt8x" path="res://assets/Full body animated characters/Ally/idle_5.png" id="9_hl3ch"]
+[ext_resource type="Texture2D" uid="uid://dbh42viwwqakd" path="res://assets/Full body animated characters/Ally/death_0.png" id="10_y5ikv"]
+[ext_resource type="Texture2D" uid="uid://bam6t402k730h" path="res://assets/Full body animated characters/Ally/death_1.png" id="11_0rm77"]
+[ext_resource type="Texture2D" uid="uid://ch8x46f1it38g" path="res://assets/Full body animated characters/Ally/death_2.png" id="12_e0pym"]
+[ext_resource type="Texture2D" uid="uid://bbciuq1opyebg" path="res://assets/Full body animated characters/Ally/death_3.png" id="13_0bf8l"]
+[ext_resource type="Texture2D" uid="uid://p7wkf0mf6lqn" path="res://assets/Full body animated characters/Ally/death_4.png" id="14_yx5ya"]
+[ext_resource type="Texture2D" uid="uid://bauhvuf8ykaq5" path="res://assets/Full body animated characters/Ally/death_5.png" id="15_tqh01"]
+[ext_resource type="Texture2D" uid="uid://bpn4mseagxahm" path="res://assets/Full body animated characters/Ally/death_6.png" id="16_jbyte"]
+[ext_resource type="Texture2D" uid="uid://d4234f6x2eha" path="res://assets/Full body animated characters/Ally/death_7.png" id="17_3reus"]
+[ext_resource type="Texture2D" uid="uid://dx346w1evx63d" path="res://assets/Full body animated characters/Ally/death_8.png" id="18_mhbxw"]
+[ext_resource type="Texture2D" uid="uid://dyednd7g44ww8" path="res://assets/Full body animated characters/Ally/death_9.png" id="19_x0pj3"]
+[ext_resource type="Texture2D" uid="uid://jvooca45muxl" path="res://assets/Full body animated characters/Ally/hit_0.png" id="20_teb83"]
+[ext_resource type="Texture2D" uid="uid://dpup4p3f41l26" path="res://assets/Full body animated characters/Ally/hit_1.png" id="21_dllhp"]
+[ext_resource type="Texture2D" uid="uid://d3ucja501buh8" path="res://assets/Full body animated characters/Ally/hit_2.png" id="22_ffaqs"]
+[ext_resource type="Texture2D" uid="uid://cjdiwrkds5k0r" path="res://assets/Full body animated characters/Ally/walk_0.png" id="23_q0un5"]
+[ext_resource type="Texture2D" uid="uid://oxrnvooky5jj" path="res://assets/Full body animated characters/Ally/walk_1.png" id="24_l870f"]
+[ext_resource type="Texture2D" uid="uid://bvq5a84h4tx43" path="res://assets/Full body animated characters/Ally/walk_2.png" id="25_jfsg0"]
+[ext_resource type="Texture2D" uid="uid://cpapt0yygrfwr" path="res://assets/Full body animated characters/Ally/walk_3.png" id="26_om7bg"]
+[ext_resource type="Texture2D" uid="uid://c1gn3g3dvq4m5" path="res://assets/Full body animated characters/Ally/walk_4.png" id="27_i1cet"]
+[ext_resource type="Texture2D" uid="uid://drfnl1d67x4qj" path="res://assets/Full body animated characters/Ally/walk_5.png" id="28_53b3t"]
+[ext_resource type="Texture2D" uid="uid://t4fa2a00ut0l" path="res://assets/Full body animated characters/Ally/walk_6.png" id="29_2nefc"]
+[ext_resource type="Texture2D" uid="uid://dg8cp22ku6g88" path="res://assets/Full body animated characters/Ally/walk_7.png" id="30_r2xaj"]
+[ext_resource type="Texture2D" uid="uid://c6k7ns81vd53l" path="res://assets/Weapons/Pistol(Green).png" id="31_spwci"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2km3s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5bmk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xun6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7jdp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6bii7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sntp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hl3ch")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_y5ikv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0rm77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_e0pym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0bf8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yx5ya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tqh01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jbyte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3reus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_mhbxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_x0pj3")
+}],
+"loop": true,
+"name": &"death",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_teb83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_dllhp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ffaqs")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_q0un5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_l870f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jfsg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_om7bg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_i1cet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_53b3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_2nefc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_r2xaj")
+}],
+"loop": true,
+"name": &"left",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_q0un5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_l870f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jfsg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_om7bg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_i1cet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_53b3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_2nefc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_r2xaj")
+}],
+"loop": true,
+"name": &"right",
+"speed": 17.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmvo7"]
+radius = 628.0
+height = 1700.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqcpy"]
+radius = 862.0
+height = 2276.0
+
+[node name="AiAlly1" type="CharacterBody2D" groups=["Allies"]]
+z_index = 20
+scale = Vector2(0.8, 0.8)
+collision_mask = 276
+script = ExtResource("1_8qmw1")
+projectileScene = ExtResource("2_c10k6")
+AllyPistolScene = ExtResource("3_b3r03")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -466.91)
+sprite_frames = SubResource("SpriteFrames_2km3s")
+animation = &"right"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.41, 0.41)
+shape = SubResource("CapsuleShape2D_kmvo7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(9.99988, 5)
+scale = Vector2(0.645, 0.645)
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_rqcpy")
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 67.19)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("31_spwci")
+offset = Vector2(0, -423.345)
+
+[node name="Muzzle" type="Marker2D" parent="WeaponSprite"]
+position = Vector2(466.975, -37.98)
+scale = Vector2(1.2384, 1.41314)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+collide_with_areas = true
+
+[connection signal="area_entered" from="Area2D" to="." method="OnBodyEntered"]
+[connection signal="area_exited" from="Area2D" to="." method="OnBodyExited"]
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="OnBodyExited"]

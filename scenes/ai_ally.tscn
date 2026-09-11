@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://fj65ugttt5uu"]
+
+[ext_resource type="Script" path="res://scenes/AiPowerUp.cs" id="1_8j4jx"]
+[ext_resource type="Texture2D" uid="uid://nd5o2anykscb" path="res://assets/Extras/Item_Powerup_Weapon_Sword_6.png" id="2_hf4h0"]
+[ext_resource type="PackedScene" uid="uid://duj6dwqn1qwuv" path="res://scenes/ai_ally_1.tscn" id="2_ycnrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yasti"]
+
+[node name="AI Ally" type="Area2D"]
+scale = Vector2(6.135, 6.135)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_8j4jx")
+allyScene = ExtResource("2_ycnrp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hf4h0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.185, 3.185)
+shape = SubResource("RectangleShape2D_yasti")
+
+[connection signal="area_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

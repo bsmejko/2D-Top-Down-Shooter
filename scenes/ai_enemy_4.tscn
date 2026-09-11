@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://0qqh1t30uir3"]
+
+[ext_resource type="Script" path="res://scenes/AiEnemy4.cs" id="1_2jg6f"]
+[ext_resource type="Texture2D" uid="uid://vsgaxtmy4gcs" path="res://assets/Full body animated characters/Enemies/Enemy 4/fly_0.png" id="2_h1ixh"]
+[ext_resource type="Texture2D" uid="uid://dny2e1itc1cpq" path="res://assets/Generic death animation/death_0 - (yellow).png" id="2_lwlbk"]
+[ext_resource type="Texture2D" uid="uid://ssec186djnt1" path="res://assets/Full body animated characters/Enemies/Enemy 4/fly_1.png" id="3_ilupt"]
+[ext_resource type="Texture2D" uid="uid://bfgqeon5vodvu" path="res://assets/Generic death animation/death_1 - (yellow).png" id="3_yqnot"]
+[ext_resource type="Texture2D" uid="uid://dm8ooitellyy3" path="res://assets/Full body animated characters/Enemies/Enemy 4/fly_2.png" id="4_8ks42"]
+[ext_resource type="Texture2D" uid="uid://c8ud3uwjb4ul6" path="res://assets/Generic death animation/death_2 - (yellow).png" id="4_bgbh7"]
+[ext_resource type="Texture2D" uid="uid://2qaxlp2ycobk" path="res://assets/Full body animated characters/Enemies/Enemy 4/fly_3.png" id="5_w3qda"]
+[ext_resource type="Texture2D" uid="uid://d4h3qy3tdhkd1" path="res://assets/Full body animated characters/Enemies/Enemy 4/fly_4.png" id="6_n7wue"]
+[ext_resource type="Texture2D" uid="uid://c0xgvpm77d0vh" path="res://assets/Full body animated characters/Enemies/Enemy 4/fly_5.png" id="7_8i27p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g18o5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lwlbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yqnot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bgbh7")
+}],
+"loop": true,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h1ixh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ilupt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8ks42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w3qda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n7wue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8i27p")
+}],
+"loop": true,
+"name": &"left",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h1ixh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ilupt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8ks42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w3qda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n7wue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8i27p")
+}],
+"loop": true,
+"name": &"right",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmvo7"]
+radius = 628.0
+height = 1700.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqcpy"]
+radius = 530.0
+height = 1548.0
+
+[node name="AI Enemy 4" type="CharacterBody2D" groups=["mobs"]]
+position = Vector2(0, -10)
+scale = Vector2(0.9, 0.9)
+collision_layer = 4
+script = ExtResource("1_2jg6f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, -415)
+sprite_frames = SubResource("SpriteFrames_g18o5")
+animation = &"left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15.0001, 15.0001)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_kmvo7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(9.99988, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-14.9998, -19.9999)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_rqcpy")

@@ -1,0 +1,232 @@
+[gd_scene load_steps=18 format=3 uid="uid://dvpuigy6s0pcj"]
+
+[ext_resource type="Texture2D" uid="uid://bekvqpqtkg1kx" path="res://assets/Full body animated characters/Char 3/with hands/idle_0.png" id="1_ysf5k"]
+[ext_resource type="Texture2D" uid="uid://oc2i1rw6ltss" path="res://assets/Full body animated characters/Char 3/with hands/idle_1.png" id="2_ulpha"]
+[ext_resource type="Texture2D" uid="uid://cwta8d2a7ilca" path="res://assets/Full body animated characters/Char 3/with hands/idle_2.png" id="3_0s00b"]
+[ext_resource type="Texture2D" uid="uid://bodyhvepfi6vq" path="res://assets/Full body animated characters/Char 3/with hands/idle_3.png" id="4_bd5jk"]
+[ext_resource type="Texture2D" uid="uid://b8b60yk8dtyrd" path="res://assets/Full body animated characters/Char 3/with hands/idle_4.png" id="5_63q13"]
+[ext_resource type="Texture2D" uid="uid://i00bnog6qt8x" path="res://assets/Full body animated characters/Char 3/with hands/idle_5.png" id="6_4ii63"]
+[ext_resource type="Texture2D" uid="uid://cjdiwrkds5k0r" path="res://assets/Full body animated characters/Char 3/with hands/walk_0.png" id="8_yly77"]
+[ext_resource type="Texture2D" uid="uid://oxrnvooky5jj" path="res://assets/Full body animated characters/Char 3/with hands/walk_1.png" id="9_uj4i3"]
+[ext_resource type="Texture2D" uid="uid://bvq5a84h4tx43" path="res://assets/Full body animated characters/Char 3/with hands/walk_2.png" id="10_ceqm3"]
+[ext_resource type="Texture2D" uid="uid://cpapt0yygrfwr" path="res://assets/Full body animated characters/Char 3/with hands/walk_3.png" id="11_irpcg"]
+[ext_resource type="Texture2D" uid="uid://c1gn3g3dvq4m5" path="res://assets/Full body animated characters/Char 3/with hands/walk_4.png" id="12_iwg5w"]
+[ext_resource type="Texture2D" uid="uid://drfnl1d67x4qj" path="res://assets/Full body animated characters/Char 3/with hands/walk_5.png" id="13_2wr22"]
+[ext_resource type="Texture2D" uid="uid://t4fa2a00ut0l" path="res://assets/Full body animated characters/Char 3/with hands/walk_6.png" id="14_qtlsm"]
+[ext_resource type="Texture2D" uid="uid://dg8cp22ku6g88" path="res://assets/Full body animated characters/Char 3/with hands/walk_7.png" id="15_ipod0"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_fxsoi"]
+script/source = "using Godot;
+using System;
+
+public partial class ai_player : CharacterBody2D
+{
+    public CharacterBody2D TargetToChase;  // Ensure this is set to the player node in the inspector
+
+    private const float SPEED = 2000f;
+    private const float STOP_DISTANCE = 1600f;  // Distance at which AI should stop
+    private const float REACTIVATE_DISTANCE = 1800f;  // Distance to reactivate AI if it gets too close
+
+    private Vector2 _previousTargetPosition;  // To track the player's last position
+    private bool _isPlayerMoving = false;     // Flag to detect player movement
+
+    public override void _Ready()
+    {
+        SetPhysicsProcess(true);
+        GD.Print(\"AI Ready\");
+    }
+
+    // Custom algorithm to check if the target is moving
+    private bool IsTargetMoving()
+    {
+        // Compare the player's current position with the last position
+        bool isMoving = !TargetToChase.GlobalPosition.IsEqualApprox(_previousTargetPosition);
+        _previousTargetPosition = TargetToChase.GlobalPosition;  // Update for next check
+        return isMoving;
+    }
+
+    private void PlayAnimation()
+    {
+        var animatedSprite = GetNode<AnimatedSprite2D>(\"AnimatedSprite2D\");
+        float directionX = Velocity.X;
+        float directionY = Velocity.Y;
+        bool flip = animatedSprite.FlipH;
+
+        if (directionX > 0)
+        {
+            animatedSprite.Play(\"right\");
+            animatedSprite.FlipH = false;
+        }
+        else if (directionX < 0)
+        {
+            animatedSprite.Play(\"left\");
+            animatedSprite.FlipH = true;
+        }
+        else if (directionY != 0 && !flip)
+        {
+            animatedSprite.Play(\"right\");
+        }
+        else if (directionY != 0 && flip)
+        {
+            animatedSprite.Play(\"left\");
+        }
+        else
+        {
+            animatedSprite.Play(\"Idle\");
+        }
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (TargetToChase == null)
+        {
+            GD.Print(\"No target to chase!\");
+            return;
+        }
+
+        // Calculate distance between AI and player
+        float distanceToTarget = GlobalPosition.DistanceTo(TargetToChase.GlobalPosition);
+        GD.Print($\"Distance to target: {distanceToTarget}\");
+
+        // Check if the player is moving
+        _isPlayerMoving = IsTargetMoving();
+
+        if (distanceToTarget <= STOP_DISTANCE)
+        {
+            // If AI is within stopping distance and the player is stationary, stop moving
+            if (!_isPlayerMoving)
+            {
+                Velocity = Vector2.Zero;
+            }
+            else
+            {
+                // If player is moving, AI should slightly back off to maintain STOP_DISTANCE
+                Vector2 directionAwayFromPlayer = GlobalPosition.DirectionTo(TargetToChase.GlobalPosition).Normalized() * -SPEED * (float)delta;
+                Velocity = directionAwayFromPlayer;
+            }
+        }
+        else
+        {
+            // If AI is beyond stopping distance, move towards the player
+            Vector2 directionToPlayer = GlobalPosition.DirectionTo(TargetToChase.GlobalPosition).Normalized() * SPEED * (float)delta;
+            Velocity = directionToPlayer;
+        }
+
+        GD.Print($\"Moving AI with velocity: {Velocity}\");
+        MoveAndSlide();
+        PlayAnimation();
+    }
+}
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsefr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ysf5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ulpha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0s00b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bd5jk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_63q13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4ii63")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_yly77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uj4i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ceqm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_irpcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_iwg5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2wr22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qtlsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ipod0")
+}],
+"loop": true,
+"name": &"left",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_yly77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uj4i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ceqm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_irpcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_iwg5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2wr22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qtlsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ipod0")
+}],
+"loop": true,
+"name": &"right",
+"speed": 17.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_11wpq"]
+radius = 338.0
+height = 1172.0
+
+[node name="AI Player" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 128
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = SubResource("CSharpScript_fxsoi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1013, 159)
+sprite_frames = SubResource("SpriteFrames_gsefr")
+animation = &"right"
+autoplay = "Idle"
+frame = 3
+frame_progress = 0.884607
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(997, 545)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_11wpq")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 100.0
+target_desired_distance = 100.0

@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0p2vmnnfx4ra"]
+
+[ext_resource type="Script" path="res://Settings.cs" id="1_gtoo5"]
+[ext_resource type="Texture2D" uid="uid://bjwqjaqb4ehby" path="res://assets/Environment/MainGameBackground.png" id="2_qijxt"]
+
+[node name="Settings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchor_left = 0.087
+anchor_top = 0.082
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0400085
+offset_top = 0.439995
+offset_right = -1615.0
+offset_bottom = -922.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gtoo5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -167.0
+offset_top = -88.0
+offset_right = 1754.0
+offset_bottom = 988.0
+texture = ExtResource("2_qijxt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 1.0
+offset_right = 142.0
+offset_bottom = 93.0
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 595.0
+offset_top = 376.0
+offset_right = 737.0
+offset_bottom = 407.0
+scale = Vector2(3, 3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ScreenSize" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Toggle Fullscreen"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/ScreenSize" to="." method="_on_screen_size_pressed"]

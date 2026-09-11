@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://wliun4d2axj"]
+
+[ext_resource type="Script" path="res://SpeedBoost.cs" id="1_2m2bx"]
+[ext_resource type="Texture2D" uid="uid://bfa04j1rih8mc" path="res://assets/Extras/Item_Powerup_Star_8.png" id="2_h8vll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yasti"]
+
+[node name="SpeedBoost" type="Area2D"]
+scale = Vector2(6.135, 6.135)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_2m2bx")
+PowerUpIcon = ExtResource("2_h8vll")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_h8vll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.185, 3.185)
+shape = SubResource("RectangleShape2D_yasti")
+
+[connection signal="area_entered" from="." to="." method="OnBodyEntered"]

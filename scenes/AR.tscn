@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0kfhfrlat35b"]
+
+[ext_resource type="Script" path="res://scripts/weapons/Ar.cs" id="1_4djmk"]
+[ext_resource type="PackedScene" uid="uid://dx4m61keks2vp" path="res://scenes/Bullet.tscn" id="2_1fwon"]
+[ext_resource type="Texture2D" uid="uid://65i0s2e7am7o" path="res://assets/Weapons/AR.png" id="2_8ygsb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajicm"]
+size = Vector2(20, 10.1827)
+
+[node name="Ar" type="Area2D" node_paths=PackedStringArray("WeaponSprite")]
+z_index = 10
+scale = Vector2(0.8, 0.8)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_4djmk")
+BulletScene = ExtResource("2_1fwon")
+WeaponName = "Ar"
+WeaponTexture = ExtResource("2_8ygsb")
+Automatic = true
+WeaponSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8ygsb")
+offset = Vector2(-77.95, -441.73)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(66.78, 66.78)
+shape = SubResource("RectangleShape2D_ajicm")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

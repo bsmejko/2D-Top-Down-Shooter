@@ -1,0 +1,212 @@
+[gd_scene load_steps=34 format=3 uid="uid://bgkt4abrq3cvr"]
+
+[ext_resource type="PackedScene" uid="uid://dvu3b8porkfsn" path="res://scenes/player.tscn" id="1_ny5v8"]
+[ext_resource type="PackedScene" uid="uid://bstgs80aeac80" path="res://scenes/ai_enemy_1.tscn" id="4_xycpt"]
+[ext_resource type="PackedScene" uid="uid://fqbhbup0j5f2" path="res://scenes/ai_enemy_2.tscn" id="5_e3if0"]
+[ext_resource type="Texture2D" uid="uid://5wp8rlsty22o" path="res://assets/Environment/MainGameBackground2.png" id="6_8hb18"]
+[ext_resource type="PackedScene" uid="uid://dk23damremsq3" path="res://scenes/ai_enemy_3.tscn" id="6_jtohj"]
+[ext_resource type="Script" path="res://Camera2d.cs" id="6_pblsk"]
+[ext_resource type="PackedScene" uid="uid://dx4m61keks2vp" path="res://scenes/Bullet.tscn" id="7_64a7u"]
+[ext_resource type="PackedScene" uid="uid://0qqh1t30uir3" path="res://scenes/ai_enemy_4.tscn" id="7_p6ss2"]
+[ext_resource type="Script" path="res://MazeGeneration.cs" id="8_5ofwo"]
+[ext_resource type="PackedScene" uid="uid://ceu0cyod61b8" path="res://scenes/ai_enemy_5.tscn" id="8_s2763"]
+[ext_resource type="Script" path="res://WeaponSpawner.cs" id="9_1d6fe"]
+[ext_resource type="PackedScene" uid="uid://da7xf3jbm1ili" path="res://scenes/ai_enemy_6.tscn" id="9_h2m0o"]
+[ext_resource type="Script" path="res://EnemySpawner.cs" id="9_vrg2x"]
+[ext_resource type="PackedScene" uid="uid://bomnw5obc0lus" path="res://scenes/ai_enemy_7.tscn" id="10_7utpj"]
+[ext_resource type="Script" path="res://GameManager.cs" id="11_2xvki"]
+[ext_resource type="PackedScene" uid="uid://3otsplavgvpc" path="res://scenes/ai_boss_1.tscn" id="11_25yso"]
+[ext_resource type="Script" path="res://AstarPathfinding.cs" id="11_hxduu"]
+[ext_resource type="PackedScene" uid="uid://bevk7xvrwaaju" path="res://scenes/ai_boss_2.tscn" id="11_s3f54"]
+[ext_resource type="PackedScene" uid="uid://dhkxdlir2aej7" path="res://pause_menu.tscn" id="12_kgr1w"]
+[ext_resource type="Texture2D" uid="uid://bfdhms6bkqg8x" path="res://assets/Weapons/Pistol.png" id="12_sdqe7"]
+[ext_resource type="PackedScene" uid="uid://dlmo8mlvc43we" path="res://scenes/Shotgun.tscn" id="15_omkab"]
+[ext_resource type="PackedScene" uid="uid://d0kfhfrlat35b" path="res://scenes/AR.tscn" id="16_hxgot"]
+[ext_resource type="PackedScene" uid="uid://beegwhfg3rbkp" path="res://scenes/pistol.tscn" id="17_pdgsy"]
+[ext_resource type="PackedScene" uid="uid://h54w0b2o5coi" path="res://scenes/medkit.tscn" id="18_q5bxh"]
+[ext_resource type="PackedScene" uid="uid://gdfo6phk05tt" path="res://scenes/insta_kill.tscn" id="21_7hmgo"]
+[ext_resource type="PackedScene" uid="uid://fj65ugttt5uu" path="res://scenes/ai_ally.tscn" id="23_3m2ll"]
+[ext_resource type="PackedScene" uid="uid://wliun4d2axj" path="res://speed_boost.tscn" id="24_yijrg"]
+[ext_resource type="PackedScene" uid="uid://hg8k6frhpt08" path="res://scenes/faster_fire_rate.tscn" id="25_catpb"]
+[ext_resource type="PackedScene" uid="uid://cseuqwu5w05sm" path="res://scenes/Shield.tscn" id="26_6f31x"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_xundt"]
+script/source = "using Godot;
+using System;
+
+public partial class Weapon : Sprite2D
+{
+    private Sprite2D _sprite;
+    private CollisionShape2D _collisionShape;
+
+    public string WeaponName { get; private set; }
+    public int Damage { get; private set; }
+    public bool IsShotgun { get; private set; }
+    public bool IsAR { get; private set; }
+
+    public override void _Ready()
+    {
+        // Add a sprite and collision shape dynamically
+        _sprite = new Sprite2D();
+        AddChild(_sprite);
+
+        _collisionShape = new CollisionShape2D();
+        var shape = new CircleShape2D();
+        shape.Radius = 10f; // Adjust as needed
+        _collisionShape.Shape = shape;
+        AddChild(_collisionShape);
+
+        // Connect the body entered signal
+        BodyEntered += OnBodyEntered;
+    }
+
+    public void SetWeaponType(string name, int damage, bool isShotgun, bool isAR)
+    {
+        WeaponName = name;
+        Damage = damage;
+        IsShotgun = isShotgun;
+        IsAR = isAR;
+
+        // Set the sprite texture based on the weapon type
+        _sprite.Texture = ResourceLoader.Load<Texture2D>($\"res://assets/weapons/{name.ToLower()}.png\");
+    }
+
+    private void OnBodyEntered(Node body)
+    {
+        if (body is player player)
+        {
+            player.EquipWeapon(this);
+            QueueFree(); // Remove weapon from the world
+        }
+    }
+}"
+
+[sub_resource type="LabelSettings" id="LabelSettings_15vei"]
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6r4a"]
+bg_color = Color(0.226707, 0.226708, 0.226707, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knqoo"]
+bg_color = Color(0.912887, 0.271769, 0.272636, 1)
+
+[node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("11_2xvki")
+
+[node name="MazeGeneration" type="Node" parent="GameManager"]
+script = ExtResource("8_5ofwo")
+
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("RoundLabel", "ScoreLabel")]
+script = ExtResource("9_vrg2x")
+AiEnemy1Scene = ExtResource("4_xycpt")
+AiEnemy2Scene = ExtResource("5_e3if0")
+AiEnemy3Scene = ExtResource("6_jtohj")
+AiEnemy4Scene = ExtResource("7_p6ss2")
+AiEnemy5Scene = ExtResource("8_s2763")
+AiEnemy6Scene = ExtResource("9_h2m0o")
+AiEnemy7Scene = ExtResource("10_7utpj")
+AiBoss1Scene = ExtResource("11_25yso")
+AiBoss2Scene = ExtResource("11_s3f54")
+RoundLabel = NodePath("../CanvasLayer/RoundLabel")
+ScoreLabel = NodePath("../CanvasLayer/Score")
+
+[node name="A* Pathfinding" type="Node" parent="."]
+script = ExtResource("11_hxduu")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -65986.0
+offset_top = -41113.0
+offset_right = 111801.0
+offset_bottom = 63102.0
+texture = ExtResource("6_8hb18")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -7.0
+offset_top = -157.0
+offset_right = 37958.0
+offset_bottom = 21104.0
+texture = ExtResource("6_8hb18")
+
+[node name="Player" parent="." instance=ExtResource("1_ny5v8")]
+z_index = 20
+position = Vector2(17816, 9740)
+scale = Vector2(0.8, 0.8)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.05, 0.05)
+script = ExtResource("6_pblsk")
+
+[node name="WeaponHolder" type="Node2D" parent="Player"]
+position = Vector2(0, 50.33)
+
+[node name="Pistol" parent="Player/WeaponHolder" instance=ExtResource("17_pdgsy")]
+position = Vector2(0, -50.3291)
+
+[node name="WeaponSprite" type="Sprite2D" parent="Player/WeaponHolder"]
+scale = Vector2(0.972, 0.918)
+texture = ExtResource("12_sdqe7")
+offset = Vector2(0, -408.515)
+script = SubResource("CSharpScript_xundt")
+
+[node name="Muzzle" type="Marker2D" parent="Player/WeaponHolder/WeaponSprite"]
+position = Vector2(502.255, 0)
+scale = Vector2(1.2384, 1.41314)
+
+[node name="WeaponSpawner" type="Node2D" parent="."]
+position = Vector2(0.00195313, 0.000976563)
+script = ExtResource("9_1d6fe")
+ShotgunScene = ExtResource("15_omkab")
+ARScene = ExtResource("16_hxgot")
+PistolScene = ExtResource("17_pdgsy")
+MedkitScene = ExtResource("18_q5bxh")
+InstaKillScene = ExtResource("21_7hmgo")
+AllyPowerupScene = ExtResource("23_3m2ll")
+SpeedBoostScene = ExtResource("24_yijrg")
+FasterFireRateScene = ExtResource("25_catpb")
+ShieldScene = ExtResource("26_6f31x")
+
+[node name="Bullet" parent="." instance=ExtResource("7_64a7u")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PowerUpIcons" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 3.0
+offset_top = 40.0
+offset_right = 181.0
+offset_bottom = 106.0
+
+[node name="RoundLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_15vei")
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -116.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_right = 1800.0
+offset_bottom = 342.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 250
+theme_override_styles/background = SubResource("StyleBoxFlat_e6r4a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_knqoo")
+value = 50.0
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_kgr1w")]
+offset_left = -9.0
+offset_top = -96.0
+offset_right = -3.0
+offset_bottom = -85.0

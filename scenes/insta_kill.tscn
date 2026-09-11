@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://gdfo6phk05tt"]
+
+[ext_resource type="Script" path="res://scenes/InstaKill.cs" id="1_vcyoh"]
+[ext_resource type="Texture2D" uid="uid://dxhs0iafskgty" path="res://assets/Extras/Item_Powerup_Skull_18.png" id="2_a0rt1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yasti"]
+
+[node name="InstaKill" type="Area2D"]
+scale = Vector2(6.135, 6.135)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_vcyoh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_a0rt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.185, 3.185)
+shape = SubResource("RectangleShape2D_yasti")
+
+[connection signal="area_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://do8qv2alcqqma"]
+
+[ext_resource type="Script" path="res://scenes/BossBullet.cs" id="1_ac7bb"]
+[ext_resource type="Texture2D" uid="uid://b64mklnv3o4hc" path="res://assets/Extras/BossBullet.png" id="2_6h7to"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_364ol"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_ac7bb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_6h7to")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(12.08, 12.08)
+shape = SubResource("CircleShape2D_364ol")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://beegwhfg3rbkp"]
+
+[ext_resource type="Script" path="res://scripts/weapons/Pistol.cs" id="1_taiis"]
+[ext_resource type="PackedScene" uid="uid://dx4m61keks2vp" path="res://scenes/Bullet.tscn" id="2_4jftc"]
+[ext_resource type="Texture2D" uid="uid://bfdhms6bkqg8x" path="res://assets/Weapons/Pistol.png" id="2_uhwir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxyvc"]
+size = Vector2(17.4302, 11.8704)
+
+[node name="Pistol" type="Area2D" node_paths=PackedStringArray("WeaponSprite")]
+z_index = 10
+scale = Vector2(0.8, 0.8)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_taiis")
+BulletScene = ExtResource("2_4jftc")
+WeaponName = "Pistol"
+WeaponTexture = ExtResource("2_uhwir")
+WeaponSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uhwir")
+offset = Vector2(-58.655, -454.055)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(49.3743, 0)
+scale = Vector2(44.965, 48.705)
+shape = SubResource("RectangleShape2D_sxyvc")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

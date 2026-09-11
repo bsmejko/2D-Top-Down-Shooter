@@ -1,0 +1,168 @@
+[gd_scene load_steps=25 format=3 uid="uid://dk23damremsq3"]
+
+[ext_resource type="Script" path="res://AiEnemy3.cs" id="1_xv1kg"]
+[ext_resource type="Texture2D" uid="uid://d31a0fu60lcbu" path="res://assets/Full body animated characters/Enemies/Enemy 3/idle_0.png" id="2_s807m"]
+[ext_resource type="Texture2D" uid="uid://b4oubw58jwsho" path="res://assets/Full body animated characters/Enemies/Enemy 3/idle_1.png" id="3_dc7i8"]
+[ext_resource type="Texture2D" uid="uid://bdskiwsm52shg" path="res://assets/Full body animated characters/Enemies/Enemy 3/idle_2.png" id="4_rfo51"]
+[ext_resource type="Texture2D" uid="uid://bthgawnrhjym1" path="res://assets/Full body animated characters/Enemies/Enemy 3/idle_3.png" id="5_0avq0"]
+[ext_resource type="Texture2D" uid="uid://nx24l5n2i627" path="res://assets/Full body animated characters/Enemies/Enemy 3/idle_4.png" id="6_jfy1h"]
+[ext_resource type="Texture2D" uid="uid://5l5iysptnugc" path="res://assets/Full body animated characters/Enemies/Enemy 3/idle_5.png" id="7_pg52f"]
+[ext_resource type="Texture2D" uid="uid://dsfapf208g37v" path="res://assets/Generic death animation/death_0 - (red).png" id="8_hbw1m"]
+[ext_resource type="Texture2D" uid="uid://b6dc57yk46gh" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_0.png" id="8_uociy"]
+[ext_resource type="Texture2D" uid="uid://fexfyr7e6prs" path="res://assets/Generic death animation/death_1 - (red).png" id="9_c4s7g"]
+[ext_resource type="Texture2D" uid="uid://cpbe0yjbafrp6" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_1.png" id="9_pd0j3"]
+[ext_resource type="Texture2D" uid="uid://cd3ik6irckmmg" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_2.png" id="10_a2hpo"]
+[ext_resource type="Texture2D" uid="uid://dns6dw1tkpdtr" path="res://assets/Generic death animation/death_2 - (red).png" id="10_va38s"]
+[ext_resource type="Texture2D" uid="uid://bb68k2viojw4h" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_3.png" id="11_l80fg"]
+[ext_resource type="Texture2D" uid="uid://3x677hsnm3mv" path="res://assets/Full body animated characters/Enemies/Enemy 3/hit_0.png" id="11_pivd5"]
+[ext_resource type="Texture2D" uid="uid://bl63nihbomtag" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_4.png" id="12_cij77"]
+[ext_resource type="Texture2D" uid="uid://bprya0px03bua" path="res://assets/Full body animated characters/Enemies/Enemy 3/hit_1.png" id="12_jxjkl"]
+[ext_resource type="Texture2D" uid="uid://bsphsnfy3yuio" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_5.png" id="13_jskxk"]
+[ext_resource type="Texture2D" uid="uid://vid5olulmb77" path="res://assets/Full body animated characters/Enemies/Enemy 3/hit_2.png" id="13_y2o6u"]
+[ext_resource type="Texture2D" uid="uid://bcph817ubwwru" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_6.png" id="14_iy0ck"]
+[ext_resource type="Texture2D" uid="uid://dke02d4ys2htt" path="res://assets/Full body animated characters/Enemies/Enemy 3/walk_7.png" id="15_4kmf1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fdtk5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s807m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dc7i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rfo51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0avq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jfy1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pg52f")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hbw1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c4s7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_va38s")
+}],
+"loop": true,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_pivd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jxjkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_y2o6u")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_uociy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pd0j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_a2hpo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_l80fg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cij77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jskxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_iy0ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4kmf1")
+}],
+"loop": true,
+"name": &"left",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_uociy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pd0j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_a2hpo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_l80fg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cij77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jskxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_iy0ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4kmf1")
+}],
+"loop": true,
+"name": &"right",
+"speed": 18.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmvo7"]
+radius = 628.0
+height = 1700.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqcpy"]
+radius = 530.0
+height = 1548.0
+
+[node name="AI Enemy 3" type="CharacterBody2D" groups=["mobs"]]
+position = Vector2(0, -10)
+scale = Vector2(0.9, 0.9)
+collision_layer = 4
+script = ExtResource("1_xv1kg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, -415)
+sprite_frames = SubResource("SpriteFrames_fdtk5")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15.0001, 15.0001)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_kmvo7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(9.99988, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-14.9998, -19.9999)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_rqcpy")

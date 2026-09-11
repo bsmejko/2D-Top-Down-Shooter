@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://h54w0b2o5coi"]
+
+[ext_resource type="Texture2D" uid="uid://cophw6dgaacw0" path="res://assets/Extras/Healthkit.png" id="1_et68f"]
+[ext_resource type="Script" path="res://scenes/Medkit.cs" id="1_wvqyb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yasti"]
+
+[node name="Medkit" type="Area2D"]
+scale = Vector2(6.135, 6.135)
+collision_layer = 128
+collision_mask = 141
+script = ExtResource("1_wvqyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_et68f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.185, 3.185)
+shape = SubResource("RectangleShape2D_yasti")
+
+[connection signal="area_entered" from="." to="." method="OnBodyEntered"]

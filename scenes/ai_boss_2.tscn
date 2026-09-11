@@ -1,0 +1,213 @@
+[gd_scene load_steps=35 format=3 uid="uid://bevk7xvrwaaju"]
+
+[ext_resource type="Script" path="res://scenes/AiBoss2.cs" id="1_msmum"]
+[ext_resource type="PackedScene" uid="uid://b0itnbbr3bp72" path="res://scenes/boss_weapon.tscn" id="2_hoje5"]
+[ext_resource type="PackedScene" uid="uid://do8qv2alcqqma" path="res://scenes/BossBullet.tscn" id="2_xbdt5"]
+[ext_resource type="Texture2D" uid="uid://dca4rge1swibo" path="res://assets/Full body animated characters/Boss 2/idle_0.png" id="3_jko16"]
+[ext_resource type="Texture2D" uid="uid://cm7360laxu1x0" path="res://assets/Full body animated characters/Boss 2/idle_1.png" id="4_0nkkn"]
+[ext_resource type="Texture2D" uid="uid://c3ryqgufmt8ih" path="res://assets/Full body animated characters/Boss 2/idle_2.png" id="5_ownbd"]
+[ext_resource type="Texture2D" uid="uid://dnid76vpiccvq" path="res://assets/Full body animated characters/Boss 2/idle_3.png" id="6_a460m"]
+[ext_resource type="Texture2D" uid="uid://bxy68edlfu06q" path="res://assets/Full body animated characters/Boss 2/idle_4.png" id="7_e67dd"]
+[ext_resource type="Texture2D" uid="uid://b3664neh8mxlg" path="res://assets/Full body animated characters/Boss 2/idle_5.png" id="8_4ps2a"]
+[ext_resource type="Texture2D" uid="uid://bhs4igaset1mo" path="res://assets/Full body animated characters/Boss 2/death_0.png" id="9_e8orf"]
+[ext_resource type="Texture2D" uid="uid://dakjwdy662txq" path="res://assets/Full body animated characters/Boss 2/death_1.png" id="10_y4t8c"]
+[ext_resource type="Texture2D" uid="uid://buhtrqk51aac4" path="res://assets/Full body animated characters/Boss 2/death_2.png" id="11_2ptog"]
+[ext_resource type="Texture2D" uid="uid://cq60tx5cl47c7" path="res://assets/Full body animated characters/Boss 2/death_3.png" id="12_m1gbi"]
+[ext_resource type="Texture2D" uid="uid://4aj8e7tukrc0" path="res://assets/Full body animated characters/Boss 2/death_4.png" id="13_v68cg"]
+[ext_resource type="Texture2D" uid="uid://dbt7ammkblkf4" path="res://assets/Full body animated characters/Boss 2/death_5.png" id="14_188bp"]
+[ext_resource type="Texture2D" uid="uid://bg08s3uimh6lk" path="res://assets/Full body animated characters/Boss 2/death_6.png" id="15_aov5q"]
+[ext_resource type="Texture2D" uid="uid://bucy4l82wu2nf" path="res://assets/Full body animated characters/Boss 2/death_7.png" id="16_vaevt"]
+[ext_resource type="Texture2D" uid="uid://n387dkr40e8l" path="res://assets/Full body animated characters/Boss 2/death_8.png" id="17_xgcwp"]
+[ext_resource type="Texture2D" uid="uid://cq6pgb1oxku6g" path="res://assets/Full body animated characters/Boss 2/death_9.png" id="18_f8wdb"]
+[ext_resource type="Texture2D" uid="uid://bnh11l2vc8koq" path="res://assets/Full body animated characters/Boss 2/hit_0.png" id="19_2nw1y"]
+[ext_resource type="Texture2D" uid="uid://c0107yfhspggs" path="res://assets/Full body animated characters/Boss 2/hit_1.png" id="20_a5wan"]
+[ext_resource type="Texture2D" uid="uid://c8xch1mgfqux5" path="res://assets/Full body animated characters/Boss 2/hit_2.png" id="21_8tiej"]
+[ext_resource type="Texture2D" uid="uid://cnlw7utwodd1t" path="res://assets/Full body animated characters/Boss 2/walk_0.png" id="22_j4al0"]
+[ext_resource type="Texture2D" uid="uid://1n6tghgubld4" path="res://assets/Full body animated characters/Boss 2/walk_1.png" id="23_oqu2w"]
+[ext_resource type="Texture2D" uid="uid://c03ffefn60pfj" path="res://assets/Full body animated characters/Boss 2/walk_2.png" id="24_vxm5e"]
+[ext_resource type="Texture2D" uid="uid://c8ij562ir3flt" path="res://assets/Full body animated characters/Boss 2/walk_3.png" id="25_02dx4"]
+[ext_resource type="Texture2D" uid="uid://e7hh7lf0upv0" path="res://assets/Full body animated characters/Boss 2/walk_4.png" id="26_k50r1"]
+[ext_resource type="Texture2D" uid="uid://cpgwfvax28bj" path="res://assets/Full body animated characters/Boss 2/walk_5.png" id="27_1ydpp"]
+[ext_resource type="Texture2D" uid="uid://cgihw4rgy4ydc" path="res://assets/Full body animated characters/Boss 2/walk_6.png" id="28_8dpua"]
+[ext_resource type="Texture2D" uid="uid://dmntumhmsa43" path="res://assets/Full body animated characters/Boss 2/walk_7.png" id="29_fc1oi"]
+[ext_resource type="Texture2D" uid="uid://8rdmq4oyhlo1" path="res://assets/Weapons/AR(Boss).png" id="31_xkhd8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lk55h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jko16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0nkkn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ownbd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_a460m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_e67dd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4ps2a")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_e8orf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_y4t8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2ptog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m1gbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_v68cg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_188bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_aov5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vaevt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_xgcwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_f8wdb")
+}],
+"loop": true,
+"name": &"death",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_2nw1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_a5wan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8tiej")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_j4al0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_oqu2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vxm5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_02dx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_k50r1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_1ydpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_8dpua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_fc1oi")
+}],
+"loop": true,
+"name": &"left",
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_j4al0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_oqu2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vxm5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_02dx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_k50r1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_1ydpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_8dpua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_fc1oi")
+}],
+"loop": true,
+"name": &"right",
+"speed": 17.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmvo7"]
+radius = 628.0
+height = 1700.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqcpy"]
+radius = 530.0
+height = 1548.0
+
+[node name="AI Boss 2" type="CharacterBody2D" groups=["mobs"]]
+scale = Vector2(0.8, 0.8)
+collision_layer = 4
+collision_mask = 256
+script = ExtResource("1_msmum")
+BossWeaponScene = ExtResource("2_hoje5")
+projectileScene = ExtResource("2_xbdt5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lk55h")
+animation = &"Idle"
+autoplay = "Idle"
+offset = Vector2(0, -428.445)
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 173.695)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("31_xkhd8")
+offset = Vector2(0, -451.08)
+
+[node name="Muzzle" type="Marker2D" parent="WeaponSprite"]
+position = Vector2(646.44, -18.99)
+scale = Vector2(1.2384, 1.41314)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.41, 0.41)
+shape = SubResource("CapsuleShape2D_kmvo7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(9.99988, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_rqcpy")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+collide_with_areas = true
