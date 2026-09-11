@@ -101,7 +101,9 @@ Some of the main systems in the project include:
 
 ## 📸 Gameplay
 
-_Add gameplay screenshots or a short gameplay GIF here._
+<img width="2559" height="1439" alt="Screenshot 2026-09-09 180315" src="https://github.com/user-attachments/assets/1ba47337-0629-43b8-828f-7b828857d026" />
+<img width="2559" height="1439" alt="Screenshot 2026-09-09 180240" src="https://github.com/user-attachments/assets/8aea6825-74c3-49e3-8d9a-021da869673f" />
+
 
 ## 🚀 Running the Game
 
